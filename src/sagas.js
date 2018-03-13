@@ -11,7 +11,7 @@ export function* watcherSaga() {
 function fetchDog() {
   return axios({
     method: "get",
-    url: "https://dog.ceo/api/breeds/image/random"
+    url: "https://dog.ceo/api/breed/hound/images/random"
   });
 }
 
@@ -19,8 +19,7 @@ function fetchDog() {
 function fetchCat() {
   return axios({
     method: "get",
-    //url: "https://http.cat/599.jpg"
-    url: "https://dog.ceo/api/breeds/image/random"
+    url: "https://dog.ceo/api/breed/poodle/images/random"
   });
 }
 
@@ -41,7 +40,7 @@ function* workerDogSaga() {
 function* workerCatSaga() {
   try {
     const response = yield call(fetchCat);
-    console.log(response);
+    console.log("response", response);
     const cat = response.data.message;
 
     // dispatch a success action to the store with the new dog
