@@ -18,11 +18,28 @@ const sagaMiddleware = createSagaMiddleware();
 const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
+console.log("Chrome?", window.navigator.userAgent);
 // create a redux store with our reducer above and middleware
-let store = createStore(
-  reducer,
-  compose(applyMiddleware(sagaMiddleware), reduxDevTools)
-);
+//let store = createStore(
+  //reducer,
+ // compose(applyMiddleware(sagaMiddleware), reduxDevTools)
+//);
+
+// Only chrome can handle the redux dev tool
+// redux compose cannot handle a null or undefined middleware
+if (window.navigator.userAgent.includes('Chrome')) {
+  console.log("is chrome");
+  var store = createStore(reducer,
+   compose(applyMiddleware(sagaMiddleware)));
+} else {
+  var store = createStore(
+    reducer,
+    compose(
+      applyMiddleware(
+        sagaMiddleware)
+      )
+  );
+}
 
 // run the saga
 sagaMiddleware.run(watcherSaga);

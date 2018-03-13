@@ -21,7 +21,7 @@ export function reducer(state = initialState, action) {
       return { ...state, fetching: true, error: null };
       break;
     case DOG_API_CALL_SUCCESS:
-      return { ...state, fetching: false, dog: action.dog };
+      return { ...state, fetching: false, dog: action.dog, cat: null };
       break;
     case DOG_API_CALL_FAILURE:
       return { ...state, fetching: false, dog: null, error: action.error };
@@ -30,7 +30,7 @@ export function reducer(state = initialState, action) {
       return { ...state, fetching: true, error: null };
       break;
     case CAT_API_CALL_SUCCESS:
-      return { ...state, fetching: false, cat: action.cat };
+      return { ...state, fetching: false, cat: action.cat, dog: null };
       break;
     case CAT_API_CALL_FAILURE:
       return { ...state, fetching: false, cat: null, error: action.error };
